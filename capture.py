@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 from picamera import PiCamera
 import time
@@ -20,11 +20,11 @@ def cap(status):
     if not status:
         status = setup()
         camera.capture(
-            '/home/pi/Documents/python/cam/capture-10{counter:03d}.jpg')
+            '/home/pi/Documents/python/YardCam/captures/capture-10{counter:03d}.jpg')
 
     else:
         camera.capture(
-            '/home/pi/Documents/python/cam/capture-10{counter:03d}.jpg')
+            '/home/pi/Documents/python/YardCam/captures/capture-10{counter:03d}.jpg')
 
     print('Photo Taken')
     return status
