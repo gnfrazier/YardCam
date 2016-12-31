@@ -24,16 +24,23 @@ def cap(status):
 
     else:
         camera.capture(
-            '/home/pi/Documents/Pictures/capture-10{counter:03d}.jpg')
+            '/home/pi/Documents/Picturesb/capture-10{counter:03d}.jpg')
 
     print('Photo Taken')
     return status
 
 
-camera = PiCamera()
-status = None
-for i in range(5):
-    cap(status)
-    time.sleep(5)
+def capx(status):
+    print('Photo Taken')
+    return True
 
-status = shutdown()
+
+def main():
+
+    camera = PiCamera()
+    status = None
+
+    status = shutdown()
+
+if __name__ == '__main__':
+    main()
