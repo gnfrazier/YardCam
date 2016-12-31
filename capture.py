@@ -1,22 +1,28 @@
 from picamera import PiCamera
 import time
 
+
 def setup():
     camera.start_preview()
+    camera.resolution = (3280, 2464)
     time.sleep(5)
     return True
+
 
 def shutdown():
     camera.stop_preview()
     return False
 
+
 def cap(status):
     if not status:
         status = setup()
-        camera.capture('/home/pi/Documents/python/cam/capture-10%s.jpg')
+        camera.capture(
+            '/home/pi/Documents/python/cam/capture-10{counter:03d}.jpg')
 
     else:
-        camera.capture('/home/pi/Documents/python/cam/capture-10%s.jpg')
+        camera.capture(
+            '/home/pi/Documents/python/cam/capture-10{counter:03d}.jpg')
 
     print('Photo Taken')
     return status
@@ -29,4 +35,3 @@ for i in range(5):
     time.sleep(5)
 
 status = shutdown()
-
