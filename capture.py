@@ -4,7 +4,7 @@ from picamera import PiCamera
 import time
 
 
-def setup():
+def setup(camera):
     camera.start_preview()
     camera.resolution = (1640, 1232)
     time.sleep(3)
@@ -39,7 +39,7 @@ def capx(status):
 def main():
 
     camera = PiCamera()
-    status = setup()
+    status = setup(camera)
     images = 120
     if status:
         for filename in camera.capture_continuous('rise{counter:03d}.jpg'):
