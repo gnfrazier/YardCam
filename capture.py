@@ -20,11 +20,11 @@ def cap(status):
     if not status:
         status = setup()
         camera.capture(
-            '/home/pi/Documents/python/YardCam/captures/capture-10{counter:03d}.jpg')
+            '/home/pi/Documents/Pictures/capture-10{counter:03d}.jpg')
 
     else:
         camera.capture(
-            '/home/pi/Documents/python/YardCam/captures/capture-10{counter:03d}.jpg')
+            '/home/pi/Documents/Pictures/capture-10{counter:03d}.jpg')
 
     print('Photo Taken')
     return status
