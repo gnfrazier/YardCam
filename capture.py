@@ -6,8 +6,8 @@ import time
 
 def setup():
     camera.start_preview()
-    camera.resolution = (3280, 2464)
-    time.sleep(5)
+    camera.resolution = (1640, 1232)
+    time.sleep(3)
     return True
 
 
