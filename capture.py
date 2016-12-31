@@ -20,20 +20,24 @@ def cap(status):
     if not status:
         status = setup()
         camera.capture(
-            '/home/pi/Documents/Pictures/capture-10{counter:03d}.jpg')
+            '/home/pi/Pictures/capture-10{counter:03d}.jpg')
 
     else:
         camera.capture(
-            '/home/pi/Documents/Pictures/capture-10{counter:03d}.jpg')
+            '/home/pi/Pictures/capture-10{counter:03d}.jpg')
 
     print('Photo Taken')
     return status
 
 
 camera = PiCamera()
-status = None
-for i in range(5):
-    cap(status)
-    time.sleep(5)
-
+status = setup()
+images = 120
+if status:
+    for filename in camera.capture_continuous('rise{counter:03d}.jpg'):
+        
+        time.sleep(60)
+        images = images -1
+        if images == 0:
+            break
 status = shutdown()
