@@ -3,7 +3,13 @@ Requires local file of loc.py with Wunderground API key"""
 
 import loc
 import requests
-import requests
+import arrow
+
+
+def now():
+    time = arrow.utcnow().to('US/Eastern')
+
+    return time
 
 
 def get_local():
