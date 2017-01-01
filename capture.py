@@ -40,7 +40,7 @@ def main():
 
     camera = PiCamera()
     status = setup(camera)
-    images = 120
+    images = 60
     if status:
         for filename in camera.capture_continuous('rise{counter:03d}.jpg'):
 
