@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 """Calcs delay for tracking sunrise and sunset.
 Requires local file of loc.py with Wunderground API key"""
 
