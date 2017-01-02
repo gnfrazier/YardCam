@@ -18,10 +18,13 @@ def now(timezone=None):
 
 
 def get_timezone():
-    """Wunderground call to get local timezone"""
+    """get timezone from loc or from wunderground"""
 
-    data = get_wund('yesterday')
-    timezone = data['history']['date']['tzname']
+    timezone = loc.tz()
+    if not timezone:
+
+        data = get_wund('yesterday')
+        timezone = data['history']['date']['tzname']
 
     return timezone
 
