@@ -114,9 +114,9 @@ def next_capture():
 
 def main():
 
-    rdata = rise(lat, lon, alt, wun)
+    delay = next_capture()
 
-    return rdata
+    return delay
 
 if __name__ == '__main__':
     main()
