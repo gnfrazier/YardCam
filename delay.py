@@ -52,26 +52,33 @@ def get_wund(call='astronomy'):
 
 
 def sunrise(data=None):
-    """Returns dict of sunrise time"""
+    """Returns seconds until sunrise capture time"""
 
     if not data:
         data = get_wund('astronomy')
     # data.keys() returns keys
     sunrise = (data['sun_phase']['sunrise'])  # returns dict of sunrise time
+    etime = event_time(sunrise)
+    timetoevent = calc_delay(etime)
+    # start capturing an hour after sunrise
+    delay = timetoevent + 3600
 
-    return sunrise
+    return delay
 
 
 def sunset(data=None):
-    """Returns dict of sunset time"""
+    """Returns seconds until sunset capture time"""
 
     if not data:
         data = get_wund('astronomy')
     # data.keys() returns keys
     sunset = (data['sun_phase']['sunset'])  # returns dict of sunset time
-    sunset = event_time(sunset)
+    etime = event_time(sunset)
+    timetoevent = calc_delay(etime)
+    # start capturing an hour before sunset
+    delay = timetoevent - 3600
 
-    return sunset
+    return delay
 
 
 def event_time(event):
@@ -84,6 +91,25 @@ def event_time(event):
     if etime < time:
         etime = etime.replace(days=1)
     return etime
+
+
+def calc_delay(etime):
+    """Return time  in seconds until next event"""
+
+    currenttime = now()
+    delta = etime.timestamp - currenttime.timestamp
+    return delta
+
+
+def next_capture():
+    """Returns delay seconds to capture time"""
+
+    data = get_wund('astronomy')
+    risedelay = sunrise(data)
+    setdelay = sunset(data)
+    delay = min([risedelay, setdelay])
+
+    return delay
 
 
 def main():
