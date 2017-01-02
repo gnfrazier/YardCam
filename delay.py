@@ -7,6 +7,7 @@ import arrow
 
 
 def now(timezone=None):
+    """Returns local time"""
 
     if not timezone:
         get_timezone()
@@ -17,6 +18,8 @@ def now(timezone=None):
 
 
 def get_timezone():
+    """Wunderground call to get local timezone"""
+
     data = get_wund('yesterday')
     timezone = data['history']['date']['tzname']
 
@@ -24,6 +27,9 @@ def get_timezone():
 
 
 def get_local():
+    """Inputs for location data"""
+    # TODO convert to data file instead of function
+
     lat = loc.lat()
     lon = loc.lon()
     wun = loc.wun()
@@ -33,6 +39,8 @@ def get_local():
 
 
 def get_wund(call='astronomy'):
+    """Makes call to wunderground API returns parsed JSON"""
+
     local = get_local()
 
     url = 'http://api.wunderground.com/api/' + local[3] + '/' + \
@@ -44,6 +52,7 @@ def get_wund(call='astronomy'):
 
 
 def sunrise(data=None):
+    """Returns dict of sunrise time"""
 
     if not data:
         data = get_wund('astronomy')
@@ -53,17 +62,8 @@ def sunrise(data=None):
     return sunrise
 
 
-def event_time(event):
-    time = now()
-    ehour = int(event['hour'])
-    emin = int(event['minute'])
-    etime = time.replace(hour=ehour, minute=emin)
-    if etime < time:
-        etime = etime.replace(days=1)
-    return etime
-
-
 def sunset(data=None):
+    """Returns dict of sunset time"""
 
     if not data:
         data = get_wund('astronomy')
@@ -72,6 +72,18 @@ def sunset(data=None):
     sunset = event_time(sunset)
 
     return sunset
+
+
+def event_time(event):
+    """Transform event dict to time object"""
+
+    time = now()
+    ehour = int(event['hour'])
+    emin = int(event['minute'])
+    etime = time.replace(hour=ehour, minute=emin)
+    if etime < time:
+        etime = etime.replace(days=1)
+    return etime
 
 
 def main():
