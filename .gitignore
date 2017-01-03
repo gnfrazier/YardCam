@@ -1,5 +1,6 @@
 #data file for this project
 captures/
+loc.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
