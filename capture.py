@@ -8,6 +8,8 @@ import delay
 
 
 def setup(camera):
+    """Starts preview, sets resolution, sleep allows time for sensor warming"""
+
     camera.start_preview()
     camera.resolution = (1640, 1232)
     time.sleep(3)
@@ -15,11 +17,14 @@ def setup(camera):
 
 
 def shutdown(camera):
+    """Stops camera preview"""
+
     camera.stop_preview()
     return False
 
 
 def path():
+    """Checks for capture directory, creates if needed"""
 
     current = os.getcwd()
     destination = current + '/captures'
@@ -33,6 +38,8 @@ def path():
 
 
 def image_name():
+    """Parses capture time into image name"""
+
     currtime = delay.now().format('YYYY-MM-DD-HH-mm-ss')
     name = 'img-' + currtime + '.jpg'
     destination = path()
@@ -42,6 +49,7 @@ def image_name():
 
 
 def cap(camera, status=None):
+    """Checks for setup, then captures photo"""
 
     if not status:
         status = setup(camera)
@@ -53,6 +61,7 @@ def cap(camera, status=None):
 
 
 def capx(status):
+    """use for testing only"""
 
     imagename = image_name()
     print('TEST: Photo Taken {}.'.format(imagename))
@@ -61,6 +70,8 @@ def capx(status):
 
 
 def image_cap_loop(camera):
+    """Loop get next event, then wait, capture, repeat"""
+
     wait = delay.next_capture()
     waithours = wait / 60 / 60
     print('Next capture begins in {} hours.'.format(waithours))
