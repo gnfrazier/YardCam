@@ -84,7 +84,7 @@ def image_cap_loop(camera):
         time.sleep(300)
 
     status = shutdown(camera)
-    # image_cap_loop(camera)
+    image_cap_loop(camera)
 
 
 def main():
