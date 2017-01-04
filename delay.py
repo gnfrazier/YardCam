@@ -3,9 +3,12 @@
 """Calcs delay for tracking sunrise and sunset.
 Requires local file of loc.py with Wunderground API key"""
 
-import loc
 import requests
 import arrow
+import configparser
+
+cfg = configparser.ConfigParser()
+cfg.read('config.ini')
 
 
 def now(timezone=None):
@@ -22,7 +25,7 @@ def now(timezone=None):
 def get_timezone():
     """get timezone from loc or from wunderground"""
 
-    timezone = loc.tz()
+    timezone = cfg['location']['timezone']
     if not timezone:
 
         data = get_wund('yesterday')
@@ -35,10 +38,15 @@ def get_local():
     """Inputs for location data"""
     # TODO convert to data file instead of function
 
-    lat = loc.lat()
-    lon = loc.lon()
-    wun = loc.wun()
-    alt = loc.alt()
+    #lat = loc.lat()
+    #lon = loc.lon()
+    #wun = loc.wun()
+    #alt = loc.alt()
+
+    lat = cfg['location']['latitude']
+    lon = cfg['location']['longitude']
+    wun = cfg['keys']['wunderground']
+    alt = cfg['location']['altitude']
 
     return (lat, lon, alt, wun)
 
