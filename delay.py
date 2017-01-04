@@ -36,12 +36,6 @@ def get_timezone():
 
 def get_local():
     """Inputs for location data"""
-    # TODO convert to data file instead of function
-
-    #lat = loc.lat()
-    #lon = loc.lon()
-    #wun = loc.wun()
-    #alt = loc.alt()
 
     lat = cfg['location']['latitude']
     lon = cfg['location']['longitude']
