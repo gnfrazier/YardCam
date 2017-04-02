@@ -6,14 +6,20 @@ from picamera import PiCamera
 def image_cap_loop(camera):
     """Loop get next event, then wait, capture, repeat"""
 
-    wait = delay.next_capture()
-    waithours = wait / 60 / 60
+    # wait = delay.next_capture()
+    # waithours = wait / 60 / 60
+    
     print('Next capture begins in {} hours.'.format(waithours))
     time.sleep(wait)
     images = 18
     status = None
     resolution = (854, 480)
-
+    
+    latest = capture.cap(camera, status)
+    status = latest[0]
+    
+    if size > day:
+        wait = 60
     for i in range(images):
         status = camera.cap(camera, status)
         time.sleep(120)

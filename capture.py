@@ -60,8 +60,11 @@ def cap(camera, resolution=None, status=None):
     imagename = image_name()
     camera.capture(imagename)
     print('Photo Taken {}.'.format(imagename))
-    return status
+    return (status, imagename)
 
+def image_size(imagename):
+    size = os.path.getsize(imagename)
+    return size
 
 def capx(status):
     """use for testing only"""
@@ -75,8 +78,8 @@ def capx(status):
 def image_cap_loop(camera):
     """Loop get next event, then wait, capture, repeat"""
 
-    wait = delay.next_capture()
-    waithours = wait / 60 / 60
+    wait = delay.next_capture() # Delay time in seconds from delay.py
+    waithours = wait / 60 / 60 # Convert seconds to hours
     print('Next capture begins in {} hours.'.format(waithours))
     time.sleep(wait)
     images = 18
