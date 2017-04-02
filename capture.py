@@ -7,11 +7,14 @@ import os
 import delay
 
 
-def setup(camera):
+def setup(camera, resolution=None):
     """Starts preview, sets resolution, sleep allows time for sensor warming"""
-
+    
     camera.start_preview()
-    camera.resolution = (1640, 1232)
+    if resolution:
+        camera.resolution(resolution)
+    else:
+        camera.resolution = (1640, 1232)
     time.sleep(3)
     return camera
 
@@ -48,11 +51,11 @@ def image_name():
     return pathname
 
 
-def cap(camera, status=None):
+def cap(camera, resolution=None, status=None):
     """Checks for setup, then captures photo"""
 
     if not status:
-        status = setup(camera)
+        status = setup(camera, resolution)
 
     imagename = image_name()
     camera.capture(imagename)
