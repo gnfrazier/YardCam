@@ -3,18 +3,16 @@ from picamera import PiCamera
 import time
 
 
-def image_cap_loop(camera):
+def image_cap_loop(camera, status=None):
     """Set image parameters, capture image, set wait time, repeat"""
 
-    images = 18
-    status = None
     resolution = (854, 480)
 
     latest = capture.cap(camera, resolution, status)
     status = latest[0]
     size = capture.image_size(latest[1])
     capture.copy_latest(latest[1])
-    day = 1000  # image size when light is good
+    day = 100000  # image size when light is good
     if size > day:
         wait = 60
     else:
@@ -24,7 +22,7 @@ def image_cap_loop(camera):
     time.sleep(wait)
 
     # status = capture.shutdown(camera)
-    image_cap_loop(camera)
+    image_cap_loop(camera, status)
 
 
 def main():
