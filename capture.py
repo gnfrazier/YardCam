@@ -5,6 +5,7 @@ import time
 import arrow
 import os
 import delay
+import shutil
 
 
 def setup(camera, resolution=None):
@@ -51,6 +52,16 @@ def image_name():
     return pathname
 
 
+def copy_latest(imagename):
+    """Copies the image name to latest.jpg"""
+    name = 'latest' + '.jpg'
+    destination = path()
+    pathname = destination + '/' + name
+    shutil.copy(imagename, pathname)
+
+    return True
+
+
 def cap(camera, resolution=None, status=None):
     """Checks for setup, then captures photo"""
 
@@ -60,6 +71,7 @@ def cap(camera, resolution=None, status=None):
     imagename = image_name()
     camera.capture(imagename)
     print('Photo Taken {}.'.format(imagename))
+
     return (status, imagename)
 
 
