@@ -1,5 +1,6 @@
 import capture
 from picamera import PiCamera
+import time
 
 
 def image_cap_loop(camera):
