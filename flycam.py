@@ -13,7 +13,7 @@ def image_cap_loop(camera):
     latest = capture.cap(camera, resolution, status)
     status = latest[0]
     size = capture.image_size(latest[1])
-    day = 1000
+    day = 1000  # image size when light is good
     if size > day:
         wait = 60
     else:
@@ -22,8 +22,8 @@ def image_cap_loop(camera):
     print('Next capture begins in {} seconds.'.format(wait))
     time.sleep(wait)
 
-    status = shutdown(camera)
-    # image_cap_loop(camera)
+    # status = capture.shutdown(camera)
+    image_cap_loop(camera)
 
 
 def main():

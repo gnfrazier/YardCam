@@ -64,6 +64,7 @@ def cap(camera, resolution=None, status=None):
 
 
 def image_size(imagename):
+    """Measures size of image in bytes"""
     size = os.path.getsize(imagename)
     return size
 
