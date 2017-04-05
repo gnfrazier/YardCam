@@ -7,7 +7,7 @@ def image_cap_loop(camera, status=None):
     """Set image parameters, capture image, set wait time, repeat"""
 
     resolution = (854, 480)
-
+    camera.rotation = 180
     latest = capture.cap(camera, resolution, status)
     status = latest[0]
     size = capture.image_size(latest[1])
