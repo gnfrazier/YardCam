@@ -8,8 +8,7 @@ def image_cap_loop(camera, status=None):
     """Set image parameters, capture image, set wait time, repeat"""
 
     resolution = (1640, 1232)
-    # wait = delay.next_capture()  # Delay time in seconds from delay.py
-    wait = 60
+    wait = delay.next_capture()  # Delay time in seconds from delay.py
     waithours = wait / 60 / 60  # Convert seconds to hours
     print('Next capture begins in {} hours.'.format(waithours))
     time.sleep(wait)

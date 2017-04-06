@@ -63,7 +63,7 @@ def copy_latest(imagename):
     return True
 
 
-def cap(camera, resolution=None, status=None):
+def cap(camera, resolution=(1640, 1232), status=None):
     """Checks for setup, then captures photo"""
 
     if not status:
@@ -93,29 +93,11 @@ def capx(status):
     return True
 
 
-def image_cap_loop(camera):
-    """Loop get next event, then wait, capture, repeat"""
-
-    wait = delay.next_capture()  # Delay time in seconds from delay.py
-    waithours = wait / 60 / 60  # Convert seconds to hours
-    print('Next capture begins in {} hours.'.format(waithours))
-    time.sleep(wait)
-    images = 18
-    status = None
-
-    for i in range(images):
-        status = cap(camera, status)
-        time.sleep(300)
-
-    status = shutdown(camera)
-    image_cap_loop(camera)
-
-
 def main():
 
     camera = PiCamera()
-    image_cap_loop(camera)
-    print("Images captured")
+    cap(camera)
+    print("Image captured")
 
 
 if __name__ == '__main__':
