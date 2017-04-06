@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import capture
 from picamera import PiCamera
 import time
