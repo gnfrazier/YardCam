@@ -24,6 +24,8 @@ def image_cap_loop(camera, status=None):
     # status = capture.shutdown(camera)
     image_cap_loop(camera, status)
 
+    return latest
+
 
 def main():
 

@@ -2,7 +2,6 @@
 
 from picamera import PiCamera
 import time
-import arrow
 import os
 import delay
 import shutil
@@ -24,6 +23,7 @@ def shutdown(camera):
     """Stops camera preview"""
 
     camera.stop_preview()
+
     return False
 
 
@@ -54,6 +54,7 @@ def image_name():
 
 def copy_latest(imagename):
     """Copies the image name to latest.jpg"""
+
     name = 'latest' + '.jpg'
     destination = path()
     pathname = destination + '/' + name
@@ -77,7 +78,9 @@ def cap(camera, resolution=None, status=None):
 
 def image_size(imagename):
     """Measures size of image in bytes"""
+
     size = os.path.getsize(imagename)
+
     return size
 
 
