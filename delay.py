@@ -84,6 +84,9 @@ def sunset(data=None):
     timetoevent = calc_delay(etime)
     # start capturing an hour before sunset
     delay = timetoevent - 3600
+    # if within sunset capture period then capture at sunrise
+    if delay < 100:
+        delay = delay + (24 * 3600)
 
     return delay
 
@@ -114,6 +117,7 @@ def next_capture():
     data = get_wund('astronomy')
     risedelay = sunrise(data)
     setdelay = sunset(data)
+
     delay = min([risedelay, setdelay])
 
     return delay
@@ -124,6 +128,7 @@ def main():
     delay = next_capture()
 
     return delay
+
 
 if __name__ == '__main__':
     main()
