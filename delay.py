@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """Calcs delay for tracking sunrise and sunset.
-Requires local file of loc.py with Wunderground API key"""
+Requires local file of config.ini with Wunderground API key"""
 
 import requests
 import arrow
@@ -23,7 +23,7 @@ def now(timezone=None):
 
 
 def get_timezone():
-    """get timezone from loc or from wunderground"""
+    """Get timezone from config.ini or from wunderground"""
 
     timezone = cfg['location']['timezone']
     if not timezone:
@@ -84,9 +84,6 @@ def sunset(data=None):
     timetoevent = calc_delay(etime)
     # start capturing an hour before sunset
     delay = timetoevent - 3600
-    # if within sunset capture period then capture at sunrise
-    if delay < 100:
-        delay = delay + (24 * 3600)
 
     return delay
 
