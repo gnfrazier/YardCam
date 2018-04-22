@@ -7,6 +7,7 @@ import requests
 import arrow
 import configparser
 
+# TODO: Change to TOML instead of .ini
 cfg = configparser.ConfigParser()
 cfg.read('config.ini')
 
@@ -38,17 +39,6 @@ def get_timezone():
 
 def get_local():
     """Inputs for location data"""
-    # TODO convert to data file instead of function
-
-    # lat = loc.lat()
-    # lon = loc.lon()
-    # wun = loc.wun()
-    # alt = loc.alt()
-
-    '''lat = cfg['location']['latitude']
-    lon = cfg['location']['longitude']
-    wun = cfg['keys']['wunderground']
-    alt = cfg['location']['altitude']'''
 
     local['lat'] = cfg['location']['latitude']
     local['lon'] = cfg['location']['longitude']
@@ -61,10 +51,10 @@ def get_local():
 def get_wund(call='astronomy'):
     """Makes call to wunderground API returns parsed JSON"""
 
-    local = get_local()
+    get_local()
 
-    url = 'http://api.wunderground.com/api/' + local[3] + '/' + \
-        call + '/q/' + local[0] + ',' + local[1] + '.json'
+    url = 'http://api.wunderground.com/api/' + local['wun'] + '/' + \
+        call + '/q/' + local['lat'] + ',' + local['lon'] + '.json'
 
     rdata = requests.get(url)
     data = rdata.json()
