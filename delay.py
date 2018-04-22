@@ -10,6 +10,8 @@ import configparser
 cfg = configparser.ConfigParser()
 cfg.read('config.ini')
 
+local = {}
+
 
 def now(timezone=None):
     """Returns local time"""
@@ -43,12 +45,17 @@ def get_local():
     # wun = loc.wun()
     # alt = loc.alt()
 
-    lat = cfg['location']['latitude']
+    '''lat = cfg['location']['latitude']
     lon = cfg['location']['longitude']
     wun = cfg['keys']['wunderground']
-    alt = cfg['location']['altitude']
+    alt = cfg['location']['altitude']'''
 
-    return (lat, lon, alt, wun)
+    local['lat'] = cfg['location']['latitude']
+    local['lon'] = cfg['location']['longitude']
+    local['wun'] = cfg['keys']['wunderground']
+    local['alt'] = cfg['location']['altitude']
+
+    return True  # (lat, lon, alt, wun)
 
 
 def get_wund(call='astronomy'):
