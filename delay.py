@@ -38,10 +38,10 @@ def get_local():
     """Inputs for location data"""
     # TODO convert to data file instead of function
 
-    #lat = loc.lat()
-    #lon = loc.lon()
-    #wun = loc.wun()
-    #alt = loc.alt()
+    # lat = loc.lat()
+    # lon = loc.lon()
+    # wun = loc.wun()
+    # alt = loc.alt()
 
     lat = cfg['location']['latitude']
     lon = cfg['location']['longitude']
@@ -130,6 +130,7 @@ def main():
     delay = next_capture()
 
     return delay
+
 
 if __name__ == '__main__':
     main()
