@@ -2,7 +2,6 @@
 
 from picamera import PiCamera
 import time
-import arrow
 import os
 import delay
 
@@ -84,14 +83,19 @@ def image_cap_loop(camera):
         time.sleep(300)
 
     status = shutdown(camera)
-    image_cap_loop(camera)
+
+    return True
 
 
 def main():
 
     camera = PiCamera()
-    image_cap_loop(camera)
+    run = True
+    while run:
+        run = image_cap_loop(camera)
+
     print("Images captured")
+
 
 if __name__ == '__main__':
     main()
