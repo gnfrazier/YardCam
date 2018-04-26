@@ -2,6 +2,12 @@
 captures/
 config.ini
 
+# config files for this project
+*.ini
+*.toml
+*.tml
+*.yaml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

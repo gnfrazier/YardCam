@@ -90,14 +90,19 @@ def capx(status):
     imagename = image_name()
     print('TEST: Photo Taken {}.'.format(imagename))
 
+    status = shutdown(camera)
+
     return True
 
 
 def main():
 
     camera = PiCamera()
-    cap(camera)
-    print("Image captured")
+    run = True
+    while run:
+        run = image_cap_loop(camera)
+
+    print("Images captured")
 
 
 if __name__ == '__main__':
