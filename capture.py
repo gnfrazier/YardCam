@@ -95,6 +95,25 @@ def capx(status):
     return True
 
 
+def image_cap_loop(camera):
+    """Loop get next event, then wait, capture, repeat"""
+
+    wait = delay.next_capture()
+    waithours = wait / 60 / 60
+    print('Next capture begins in {} hours.'.format(waithours))
+    time.sleep(wait)
+    images = 18
+    status = None
+
+    for i in range(images):
+        status = cap(camera, status)
+        time.sleep(300)
+
+    status = shutdown(camera)
+
+    return True
+
+
 def main():
 
     camera = PiCamera()
