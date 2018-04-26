@@ -9,7 +9,7 @@ import configparser
 
 # TODO: Change to TOML instead of .ini
 cfg = configparser.ConfigParser()
-cfg.read('config.ini')
+cfg.read('/home/pi/Documents/python/YardCam/config.ini')
 
 local = {}
 
