@@ -30,7 +30,7 @@ def shutdown(camera):
 def path():
     """Checks for capture directory, creates if needed"""
 
-    current = /home/pi/Documents/python/YardCam # os.getcwd()
+    current = '/home/pi/Documents/python/YardCam' # os.getcwd()
     destination = current + '/captures'
     if os.path.isdir(destination):
         print('Photos will be placed in {} directory.'.format(destination))
